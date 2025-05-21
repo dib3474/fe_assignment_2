@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Home = () => {
@@ -19,11 +20,20 @@ const Home = () => {
         font-size: 18px;
         cursor: pointer;
         border-radius: 5px;
+        background-color: red;
+        color: white;
+        border: none;
+        transition: background-color 0.3s;
+        &:hover {
+            background-color: rgb(200, 0, 0);
+        }
     `
   return (
     <StyledHomeDiv>
         <StyledHomeImg src="src/assets/pokemon-logo.png"/>
-        <StyledHomeBtn>포켓몬 도감 시작하기</StyledHomeBtn>
+        <Link to="/Dex">
+            <StyledHomeBtn>포켓몬 도감 시작하기</StyledHomeBtn>
+        </Link>
     </StyledHomeDiv>
   )
 }
