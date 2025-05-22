@@ -1,6 +1,8 @@
 import styled from "styled-components"
 import MOCK_DATA from "../assets/mock.js";
 import { useNavigate, useParams } from "react-router-dom";
+import { useContext } from "react";
+import { PokemonContext } from "../App.jsx";
 
 const DetailDiv = styled.div`
     height: 95vh;
@@ -20,13 +22,27 @@ const DetailTitle = styled.h2`
 const DetailContent = styled.p`
     color: black;
 `
-const DetailBtn = styled.button`
+const BtnDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+`
+const BackBtn = styled.button`
     background-color: black;
     color: white;
     border-radius: 10px;
     padding: 10px 15px;
+    cursor: pointer;
+`
+const AddBtn = styled.button`
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 30px;
+    cursor: pointer;
 `
 const Detail = () => {
+    const { addPokemon } = useContext(PokemonContext);
     const { id } = useParams();
     const navigate = useNavigate();
     const [pokemon] = MOCK_DATA.filter((e) => e.id == id );
@@ -42,7 +58,10 @@ const Detail = () => {
             <DetailContent>
                 {description}
             </DetailContent>
-            <DetailBtn onClick={() => {navigate('/dex')}}>뒤로 가기</DetailBtn>
+            <BtnDiv>
+                <AddBtn onClick={() => { addPokemon(pokemon); navigate('/dex')}}>추가</AddBtn>
+                <BackBtn onClick={() => {navigate('/dex')}}>뒤로 가기</BackBtn>
+            </BtnDiv>
         </DetailDiv>
   )
 }

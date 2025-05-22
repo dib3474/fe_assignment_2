@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import PokemonCard from './PokemonCard'
+import { useContext } from 'react'
+import { PokemonContext } from '../App'
 
 const DashboardDiv = styled.div `
     display: flex;
@@ -43,22 +45,17 @@ const EmptyPokeCard = () => {
     );
 }
 
-const Dashboard = ({selectPokemon, removePokemon}) => {
-    const emptyPokemon = [0,0,0,0,0,0].slice(selectPokemon.length);
+const Dashboard = () => {
+    const { selectPokemon } = useContext(PokemonContext);
+    const emptyPokemon = [1,2,3,4,5,6].slice(selectPokemon.length);
     return (
         <DashboardDiv>
             <DashboardTitle>나만의 포켓몬</DashboardTitle>
             <DashboardContent>
-                {selectPokemon.map((pokemon) => {
-                    return (
-                        <PokemonCard pokemon={pokemon} addPokemon={null} removePokemon={removePokemon}/>
-                    );
-                })}
-                {emptyPokemon.map(() => {
-                    return (
-                        <EmptyPokeCard />
-                    );
-                })}
+                {selectPokemon.map((pokemon) => { 
+                    return <PokemonCard key={pokemon.id} pokemon={pokemon} dex={true}/> })}
+                {emptyPokemon.map((e) => { 
+                    return <EmptyPokeCard key={e}/> })}
             </DashboardContent>
         </DashboardDiv>
     )

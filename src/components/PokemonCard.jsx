@@ -1,7 +1,13 @@
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
+import { PokemonContext } from "../App"
+import { useContext } from "react"
 
 const Card = styled.div `
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border: 1px solid grey;
     border-radius: 10px;
     overflow: hidden;
@@ -37,11 +43,12 @@ const CardBtn = styled.button`
     border-radius: 5px;
 `
 
-const PokemonCard = ({pokemon, addPokemon, removePokemon}) => {
-    const {img_url, id, korean_name} = pokemon;
+const PokemonCard = ({pokemon, dex}) => {
+    const { addPokemon, removePokemon } = useContext(PokemonContext);
+    const { img_url, id, korean_name } = pokemon;
     const navigate = useNavigate();
     return (
-        <Card onClick={() => {
+        <Card key={id} onClick={() => {
             navigate(`/detail/${id}`);
         }} >
             <CardImg src={img_url}/>
@@ -51,8 +58,8 @@ const PokemonCard = ({pokemon, addPokemon, removePokemon}) => {
             </CardContent>
             <CardBtn onClick={(e) => {
                 e.stopPropagation();
-                (addPokemon) ? addPokemon(pokemon) : removePokemon(pokemon);
-            }}>{(addPokemon) ? "추가" : "삭제"}</CardBtn>
+                (dex) ? removePokemon(pokemon) : addPokemon(pokemon);
+            }}>{(dex) ? "삭제" : "추가"}</CardBtn>
         </Card>
     )
 }
