@@ -15,7 +15,7 @@ const PokemonList = ({MOCK_DATA, addPokemon}) => {
   return (
     <ListDiv>
         {MOCK_DATA.map((pokemon) => {
-            return (<PokemonCard pokemon={pokemon} addPokemon={addPokemon} removePokemon={null}/>);
+            return (<PokemonCard key={pokemon.id} pokemon={pokemon} addPokemon={addPokemon} removePokemon={null}/>);
         })}
     </ListDiv>
   )

@@ -2,6 +2,10 @@ import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 const Card = styled.div `
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     border: 1px solid grey;
     border-radius: 10px;
     overflow: hidden;
@@ -41,7 +45,7 @@ const PokemonCard = ({pokemon, addPokemon, removePokemon}) => {
     const {img_url, id, korean_name} = pokemon;
     const navigate = useNavigate();
     return (
-        <Card onClick={() => {
+        <Card key={id} onClick={() => {
             navigate(`/detail/${id}`);
         }} >
             <CardImg src={img_url}/>
