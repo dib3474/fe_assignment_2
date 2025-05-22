@@ -8,24 +8,21 @@ const HomeDiv = styled.div`
     justify-content: center;
     width: 100%;
     height: 100vh;
-    gap: 20px;
+    gap: 50px;
+    background-color: #A8DB5B;
 `
 const HomeImg = styled.img`
     width: 600px;
-    margin-bottom: 20px;
+    height: auto;
 `
 const HomeBtn = styled.button`
-    padding: 10px 20px;
+    padding: 10px 25px;
     font-size: 18px;
-    cursor: pointer;
+    border: none;
     border-radius: 5px;
     background-color: red;
     color: white;
-    border: none;
-    transition: background-color 0.3s;
-    &:hover {
-        background-color: rgb(200, 0, 0);
-    }
+    cursor: pointer;
 `
 
 const Home = () => {

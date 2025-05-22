@@ -6,19 +6,18 @@ const DashboardDiv = styled.div `
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: rgb(248, 248, 248);
-    margin-bottom: 20px;
+    background-color: white;
     border-radius: 10px;
-
   `
 const DashboardTitle = styled.h2 `
     margin-bottom: 20px;
+    font-size: 30px;
     color: red;
   `
 const DashboardContent = styled.div `
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
+    gap: 20px;
     width: 100%;
     justify-content: center;
   `
@@ -51,9 +50,9 @@ const Dashboard = ({selectPokemon, removePokemon}) => {
             <DashboardTitle>나만의 포켓몬</DashboardTitle>
             <DashboardContent>
                 {selectPokemon.map((pokemon) => {
-                        return (
-                            <PokemonCard pokemon={pokemon} addPokemon={null} removePokemon={removePokemon}/>
-                        );
+                    return (
+                        <PokemonCard pokemon={pokemon} addPokemon={null} removePokemon={removePokemon}/>
+                    );
                 })}
                 {emptyPokemon.map(() => {
                     return (
