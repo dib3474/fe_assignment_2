@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 const Card = styled.div `
@@ -41,14 +42,18 @@ const CardBtn = styled.button`
 
 const PokemonCard = ({pokemon, addPokemon, removePokemon}) => {
     const {img_url, id, korean_name} = pokemon;
+    const navigate = useNavigate();
     return (
-        <Card>
+        <Card onClick={() => {
+            navigate(`/detail/${id}`);
+        }} >
             <CardImg src={img_url}/>
             <CardContent>
                 <CardName>{korean_name}</CardName>
                 <CardId>No. {id.toString().padStart(3, '0')}</CardId>
             </CardContent>
-            <CardBtn onClick={() => {
+            <CardBtn onClick={(e) => {
+                e.stopPropagation();
                 (addPokemon) ? addPokemon(pokemon) : removePokemon(pokemon);
             }}>{(addPokemon) ? "추가" : "삭제"}</CardBtn>
         </Card>

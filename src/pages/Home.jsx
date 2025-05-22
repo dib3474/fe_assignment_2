@@ -1,5 +1,4 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 const HomeDiv = styled.div`
@@ -30,14 +29,13 @@ const HomeBtn = styled.button`
 `
 
 const Home = () => {
-  return (
-    <HomeDiv>
-        <HomeImg src="src/assets/pokemon-logo.png"/>
-        <Link to="/Dex">
-            <HomeBtn>포켓몬 도감 시작하기</HomeBtn>
-        </Link>
-    </HomeDiv>
-  )
+    const navigate = useNavigate();
+    return (
+        <HomeDiv>
+            <HomeImg src="src/assets/pokemon-logo.png"/>
+            <HomeBtn onClick={() => {navigate('/dex')}}>포켓몬 도감 시작하기</HomeBtn>
+        </HomeDiv>
+    )
 }
 
 export default Home
