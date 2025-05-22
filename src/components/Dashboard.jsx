@@ -44,15 +44,15 @@ const EmptyPokeCard = () => {
     );
 }
 
-const Dashboard = ({selectPoke}) => {
-    const emptyPokemon = [0,0,0,0,0,0].slice(selectPoke.length);
+const Dashboard = ({selectPokemon, removePokemon}) => {
+    const emptyPokemon = [0,0,0,0,0,0].slice(selectPokemon.length);
     return (
         <DashboardDiv>
             <DashboardTitle>나만의 포켓몬</DashboardTitle>
             <DashboardContent>
-                {selectPoke.map((pokemon) => {
+                {selectPokemon.map((pokemon) => {
                         return (
-                            <PokemonCard pokemon={pokemon} />
+                            <PokemonCard pokemon={pokemon} addPokemon={null} removePokemon={removePokemon}/>
                         );
                 })}
                 {emptyPokemon.map(() => {

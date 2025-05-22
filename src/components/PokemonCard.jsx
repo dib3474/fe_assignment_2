@@ -39,7 +39,7 @@ const CardBtn = styled.button`
     border-radius: 5px;
 `
 
-const PokemonCard = ({pokemon}) => {
+const PokemonCard = ({pokemon, addPokemon, removePokemon}) => {
     const {img_url, id, korean_name} = pokemon;
     return (
         <Card>
@@ -48,7 +48,9 @@ const PokemonCard = ({pokemon}) => {
                 <CardName>{korean_name}</CardName>
                 <CardId>No. {id.toString().padStart(3, '0')}</CardId>
             </CardContent>
-            <CardBtn>삭제</CardBtn>
+            <CardBtn onClick={() => {
+                (addPokemon) ? addPokemon(pokemon) : removePokemon(pokemon);
+            }}>{(addPokemon) ? "추가" : "삭제"}</CardBtn>
         </Card>
     )
 }

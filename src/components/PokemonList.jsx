@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import MOCK_DATA from "../assets/mock.js";
 import PokemonCard from "./PokemonCard";
 
 const ListDiv = styled.div`
@@ -12,11 +11,11 @@ const ListDiv = styled.div`
     border-radius: 10px;
 `
 
-const PokemonList = () => {
+const PokemonList = ({MOCK_DATA, addPokemon}) => {
   return (
     <ListDiv>
         {MOCK_DATA.map((pokemon) => {
-            return (<PokemonCard pokemon={pokemon}/>)
+            return (<PokemonCard pokemon={pokemon} addPokemon={addPokemon} removePokemon={null}/>);
         })}
     </ListDiv>
   )
