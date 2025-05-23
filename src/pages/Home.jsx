@@ -29,7 +29,7 @@ const Home = () => {
     const navigate = useNavigate();
     return (
         <HomeDiv>
-            <HomeImg src="src/assets/pokemon-logo.png"/>
+            <HomeImg src="/pokemon-logo.png"/>
             <HomeBtn onClick={() => {navigate('/dex')}}>포켓몬 도감 시작하기</HomeBtn>
         </HomeDiv>
     )

@@ -39,7 +39,7 @@ const PokeballImg = styled.img `
 const EmptyPokeCard = () => {
     return (
         <EmptyCard>
-            <PokeballImg src='src/assets/pokeball.png'/>
+            <PokeballImg src='/pokeball.png'/>
         </EmptyCard>
     );
 }
