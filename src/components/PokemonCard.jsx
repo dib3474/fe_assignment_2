@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
-import { PokemonContext } from "../App"
-import { useContext } from "react"
+import { useDispatch } from 'react-redux'
+import { addPokemon, removePokemon } from "../redux/slices/pokemonSlices"
 
 const Card = styled.div `
     display: flex;
@@ -44,7 +44,7 @@ const CardBtn = styled.button`
 `
 
 const PokemonCard = ({pokemon, dex}) => {
-    const { addPokemon, removePokemon } = useContext(PokemonContext);
+    const dispatch = useDispatch()
     const { img_url, id, korean_name } = pokemon;
     const navigate = useNavigate();
     return (
@@ -58,7 +58,7 @@ const PokemonCard = ({pokemon, dex}) => {
             </CardContent>
             <CardBtn onClick={(e) => {
                 e.stopPropagation();
-                (dex) ? removePokemon(pokemon) : addPokemon(pokemon);
+                (dex) ? dispatch(removePokemon(pokemon)) : dispatch(addPokemon(pokemon));
             }}>{(dex) ? "삭제" : "추가"}</CardBtn>
         </Card>
     )

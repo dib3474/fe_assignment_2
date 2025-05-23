@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import PokemonCard from './PokemonCard'
-import { useContext } from 'react'
-import { PokemonContext } from '../App'
+import { useSelector } from 'react-redux'
 
 const DashboardDiv = styled.div `
     display: flex;
@@ -46,7 +45,7 @@ const EmptyPokeCard = () => {
 }
 
 const Dashboard = () => {
-    const { selectPokemon } = useContext(PokemonContext);
+    const selectPokemon = useSelector(({pokemon}) => pokemon.selectPokemon);
     const emptyPokemon = [1,2,3,4,5,6].slice(selectPokemon.length);
     return (
         <DashboardDiv>
