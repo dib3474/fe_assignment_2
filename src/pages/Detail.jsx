@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import MOCK_DATA from "../assets/mock.js";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useContext } from "react";
 import { PokemonContext } from "../App.jsx";
 
@@ -43,7 +43,8 @@ const AddBtn = styled.button`
 `
 const Detail = () => {
     const { addPokemon } = useContext(PokemonContext);
-    const { id } = useParams();
+    const [ searchParams ] = useSearchParams();
+    const id = searchParams.get("id");
     const navigate = useNavigate();
     const [pokemon] = MOCK_DATA.filter((e) => e.id == id );
     const {img_url, korean_name, types, description} = pokemon;
