@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import MOCK_DATA from "../assets/mock.js";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const DetailDiv = styled.div`
     height: 95vh;
@@ -27,7 +27,8 @@ const DetailBtn = styled.button`
     padding: 10px 15px;
 `
 const Detail = () => {
-    const { id } = useParams();
+    const [ searchParams ] = useSearchParams();
+    const id = searchParams.get("id");
     const navigate = useNavigate();
     const [pokemon] = MOCK_DATA.filter((e) => e.id == id );
     const {img_url, korean_name, types, description} = pokemon;
