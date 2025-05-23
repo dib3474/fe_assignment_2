@@ -1,8 +1,8 @@
 import styled from "styled-components"
 import MOCK_DATA from "../assets/mock.js";
-import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addPokemon } from "../redux/slices/pokemonSlices.js";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addPokemon, removePokemon } from "../redux/slices/pokemonSlices.js";
 
 const DetailDiv = styled.div`
     height: 95vh;
@@ -42,8 +42,14 @@ const AddBtn = styled.button`
     cursor: pointer;
 `
 const Detail = () => {
+    const selectPokemon = useSelector(({pokemon}) => pokemon.selectPokemon);
     const dispatch = useDispatch();
-    const { id } = useParams();
+    const [ searchParams ] = useSearchParams();
+    const id = searchParams.get("id");
+    const isInSelectPokemon = selectPokemon.find((element) => {
+        if (element.id === Number(id)) return true;
+        else return false;
+    });
     const navigate = useNavigate();
     const [pokemon] = MOCK_DATA.filter((e) => e.id == id );
     const {img_url, korean_name, types, description} = pokemon;
@@ -59,7 +65,9 @@ const Detail = () => {
                 {description}
             </DetailContent>
             <BtnDiv>
-                <AddBtn onClick={() => { dispatch(addPokemon(pokemon)); navigate('/dex')}}>추가</AddBtn>
+                <AddBtn onClick={() => {
+                    (isInSelectPokemon) ? dispatch(removePokemon(pokemon)) : dispatch(addPokemon(pokemon));
+                    navigate('/dex')}}>{(isInSelectPokemon) ? "삭제" : "추가"}</AddBtn>
                 <BackBtn onClick={() => {navigate('/dex')}}>뒤로 가기</BackBtn>
             </BtnDiv>
         </DetailDiv>

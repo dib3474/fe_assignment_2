@@ -27,7 +27,6 @@ const pokemonSlice = createSlice({
             ErrorMsg("더 이상 선택할 수 없습니다.");
             return ;
         }
-        console.log(action)
         if (state.selectPokemon.find((element) => element.id === action.payload.id)) {
             ErrorMsg("이미 선택된 포켓몬입니다.");
             return ;

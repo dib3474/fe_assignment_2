@@ -49,7 +49,7 @@ const PokemonCard = ({pokemon, dex}) => {
     const navigate = useNavigate();
     return (
         <Card key={id} onClick={() => {
-            navigate(`/detail/${id}`);
+            navigate(`/detail?id=${id}`);
         }} >
             <CardImg src={img_url}/>
             <CardContent>
